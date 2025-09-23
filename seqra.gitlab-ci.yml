@@ -39,10 +39,10 @@
 
     # Run analysis
     - |
-      cmd="$SEQRA_ARTIFACTS/seqra --quiet --github-token "$GITHUB_TOKEN" scan"
+      cmd="$SEQRA_ARTIFACTS/seqra --quiet --github-token \"$GITHUB_TOKEN\" scan"
 
-      if [ -z "$RULES_PATH" ]; then
-        cmd="$cmd --ruleset $SEQRA_ARTIFACTS/seqra-rules"
+      if [ -n "$RULES_PATH" ]; then
+        cmd="$cmd --ruleset $RULES_PATH"
       fi
 
       cmd="$cmd --timeout $TIMEOUT"

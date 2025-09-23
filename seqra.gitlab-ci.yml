@@ -10,7 +10,7 @@
     # Relative path to the root of the analyzed project
     PROJECT_ROOT: "."
     # Tag of seqra release
-    SEQRA_VERSION: "v0.1.4"
+    SEQRA_VERSION: "v1.0.3"
     # Relative path to rules. If set RULES_REPOSITORY not used
     RULES_PATH: ""
     # Scan timeout
@@ -25,13 +25,6 @@
     - UUID=$(echo "$SANITIZED_NAME" | sha1sum | awk '{print $1}')
     - export SEQRA_ARTIFACTS="seqra-artifacts/$UUID"
     - mkdir -p "$SEQRA_ARTIFACTS"
-
-    # Clone seqra-rules
-    - |
-      if [ -z "$RULES_PATH" ]; then
-        echo "Cloning rules from $RULES_REPOSITORY (branch $SEQRA_RULES_VERSION)"
-        git clone --branch "$SEQRA_RULES_VERSION" "$RULES_REPOSITORY" "$SEQRA_ARTIFACTS/seqra-rules"
-      fi
 
     # Download seqra
     -  wget -O "$SEQRA_ARTIFACTS/seqra.tar.gz" "https://github.com/seqrateam/seqra/releases/download/$SEQRA_VERSION/seqra_linux_amd64.tar.gz"
